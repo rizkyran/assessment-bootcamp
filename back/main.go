@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
@@ -14,11 +13,11 @@ import (
 type User struct {
 	ID                                 int `gorm : "primaryKey"`
 	FullName, Address, Email, Password string
-	CreatedAt, UpdatedAt               time.Time
+	// CreatedAt, UpdatedAt               time.Time
 }
 
 type UserInput struct {
-	Name     string `json : "full_name"`
+	FullName string `json : "fullname"`
 	Address  string `json : "address"`
 	Email    string `json : "email"`
 	Password string `json : "password"`
@@ -30,36 +29,38 @@ var (
 )
 
 func UserRegis(c *gin.Context) {
-	dataReq := UserInput{}
+	var dataReq UserInput
 
 	err = c.ShouldBindJSON(&dataReq)
 	fmt.Println("data", dataReq)
 	if err != nil {
-		fmt.Println("ini error", err)
+		// fmt.Println("ini error", err)
 		c.JSON(400, "error")
 		return
 	}
 
-	var newUser = User{
-		FullName:  dataReq.Name,
-		Address:   dataReq.Address,
-		Email:     dataReq.Email,
-		Password:  dataReq.Password,
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
-	}
+	// var newUser = User{
+	// 	FullName: dataReq.FullName,
+	// 	Address:  dataReq.Address,
+	// 	Email:    dataReq.Email,
+	// 	Password: dataReq.Password,
+	// 	// CreatedAt: time.Now(),
+	// 	// UpdatedAt: time.Now(),
+	// }
 
-	fmt.Println(newUser)
-
+	fmt.Println("inidatareq ", dataReq)
+	// fmt.Println("ini new user", newUser)
 	// usr := db.Begin()
-	err = db.Create(&newUser).Error
-	if err != nil {
-		fmt.Println("ini error", err)
-		c.JSON(400, "error")
-		return
-	}
+	//fmt.Println("after usr", usr)
+	// fmt.Println("before if")
+	// if err = db.Create(&dataReq).Error; err != nil {
+	// 	fmt.Println("ini error", err)
+	// 	c.JSON(400, err.Error())
+	// 	return
+	// }
+	// fmt.Println("after if")
 
-	fmt.Println("asd")
+	// fmt.Println("asd")
 
 	c.JSON(201, dataReq)
 }
