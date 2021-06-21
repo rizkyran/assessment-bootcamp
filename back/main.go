@@ -18,24 +18,50 @@ type User struct {
 }
 
 type UserInput struct {
-	FullName string `json : "full_name"`
+	Name     string `json : "full_name"`
 	Address  string `json : "address"`
 	Email    string `json : "email"`
 	Password string `json : "password"`
 }
 
-func UserRegis(c *gin.Context) {
-	var userInput UserInput
+var (
+	db  *gorm.DB
+	err error
+)
 
-	err := c.ShouldBindJSON(&userInput)
-	fmt.Println("data", userInput)
+func UserRegis(c *gin.Context) {
+	dataReq := UserInput{}
+
+	err = c.ShouldBindJSON(&dataReq)
+	fmt.Println("data", dataReq)
 	if err != nil {
 		fmt.Println("ini error", err)
 		c.JSON(400, "error")
 		return
 	}
 
-	c.JSON(201, userInput)
+	var newUser = User{
+		FullName:  dataReq.Name,
+		Address:   dataReq.Address,
+		Email:     dataReq.Email,
+		Password:  dataReq.Password,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
+	fmt.Println(newUser)
+
+	// usr := db.Begin()
+	err = db.Create(&newUser).Error
+	if err != nil {
+		fmt.Println("ini error", err)
+		c.JSON(400, "error")
+		return
+	}
+
+	fmt.Println("asd")
+
+	c.JSON(201, dataReq)
 }
 
 func main() {
