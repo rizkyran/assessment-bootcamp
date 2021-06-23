@@ -1,8 +1,11 @@
 import React from 'react'
 
+import Navbar from '../components/navbar'
+
 const Landing = () => {
     return (
         <>
+            <Navbar />
             <div className="container-fluid fluid-page landing-container">
                 <div className="container">
                     <div className="col-sm-7">

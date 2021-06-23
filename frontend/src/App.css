@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5, h6, .title {
 	font-weight: 700 !important;
 }
 
+.navbar-container {
+	background-color: white !important;
+}
+
 .container-fluid {
 	padding: 0 !important;	
 }
