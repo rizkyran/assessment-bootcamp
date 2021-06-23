@@ -40,12 +40,13 @@ func NewSiteHandler(service site.Service) *siteHandler {
 
 func (h *siteHandler) AddSite(c *gin.Context) {
 	var input site.SiteInput
-	var userid = c.MustGet("currentUser").(int)
 
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(400, gin.H{"errors": err.Error()})
 		return
 	}
+
+	var userid = int(c.MustGet("currentUser").(int))
 
 	user, err := h.service.AddSite(input, userid)
 

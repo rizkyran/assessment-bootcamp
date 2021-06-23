@@ -14,20 +14,21 @@ const Login = () => {
                             <div className="row">
                                 <form>
                                     <div className="mb-3">
-                                        <label for="exampleInputEmail1" className="form-label">Email</label>
-                                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        <label for="email" className="form-label">Email</label>
+                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
                                     </div>
                                     <div className="mb-3">
-                                        <label for="exampleInputPassword1" className="form-label">Password</label>
-                                        <input type="password" className="form-control" id="exampleInputPassword1" />
-                                        <p className="subtitle small text-end form-helper-text">Lupa Password</p>
+                                        <label for="password" className="form-label">Password</label>
+                                        <input type="password" className="form-control" id="password" />
                                     </div>
-                                    <button type="submit" className="primary long">Masuk</button>
+                                    <button type="submit" className="primary long">Sign In</button>
                                 </form>
                                 <p className="small text-center">
-                                    Belum punya akun?&nbsp;
+                                    Don't have any account?&nbsp;
                                     <b className="form-helper-text">
-                                        Daftar
+                                        <a href="">
+                                            Sign Up
+                                        </a>
                                     </b>
                                 </p>
                             </div>

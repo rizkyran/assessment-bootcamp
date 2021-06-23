@@ -25,10 +25,10 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 
 button.primary {
-	border: none;
+	border: 2px solid #562C2C !important;
 	padding: 1.5vh 1vw;
 	background-color: #0E9594;
-	border-radius: 10px;
+	border-radius: 5px;
 	font-weight: 700 !important;
 	color: #F9EFDC !important;
 	
@@ -42,6 +42,25 @@ button.long {
 	width: 100% !important;
 }
 
+label {
+	font-weight: 700;
+}
+
+.form-control {
+	border: 2px solid #562C2C;
+}
+
+a {
+	text-decoration: none;
+	color: #562C2C !important;
+
+	transition: all .2s ease-in-out;
+}
+
+a:hover {
+	color: #432323 !important;
+}
+
 /* LANDING */
 
 .landing-container {
@@ -53,4 +72,5 @@ button.long {
 .form-container {
 	padding: 2vw;
 	border: 2px solid #562C2C;
+	border-radius: 10px;
 }

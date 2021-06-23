@@ -3,7 +3,6 @@ package handler
 import (
 	"assessmentRandhikaR/auth"
 	"assessmentRandhikaR/user"
-	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
@@ -12,6 +11,11 @@ import (
 func Middleware(userService user.Service, authService auth.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		header := c.GetHeader("Authorization")
+
+		if header == "" || len(header) == 0 {
+			c.AbortWithStatusJSON(401, gin.H{"error": "unauthorize user"})
+			return
+		}
 
 		token, err := authService.ValidateToken(header)
 
@@ -29,22 +33,22 @@ func Middleware(userService user.Service, authService auth.Service) gin.HandlerF
 
 		userID := int(claim["user_id"].(float64))
 
-		userIDstr := strconv.Itoa(userID)
+		// userIDstr := strconv.Itoa(userID)
 
 		// handle error nya gimana
 
-		user, err := userService.GetUserByID(userIDstr)
+		// user, err := userService.GetUserByID(userIDstr)
 
-		if err != nil {
-			c.AbortWithStatusJSON(401, gin.H{"error": "unauthorize user"})
-			return
-		}
+		// if err != nil {
+		// 	c.AbortWithStatusJSON(401, gin.H{"error": "unauthorize user"})
+		// 	return
+		// }
 
-		if user.ID == 0 {
-			c.AbortWithStatusJSON(401, gin.H{"error": "unauthorize user"})
-			return
-		}
+		// if user.ID == 0 {
+		// 	c.AbortWithStatusJSON(401, gin.H{"error": "unauthorize user"})
+		// 	return
+		// }
 
-		c.Set("currentUser", user) // set id
+		c.Set("currentUser", userID) // set id
 	}
 }

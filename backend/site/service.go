@@ -39,7 +39,7 @@ func (s *service) AddSite(input SiteInput, userid int) (Site, error) {
 
 	site, ex := s.repository.AddSite(newUser)
 	if ex != nil {
-		return Site{}, ex
+		return site, ex
 	}
 
 	return site, nil
