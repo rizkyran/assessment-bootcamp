@@ -8,11 +8,11 @@ type UserFormatter struct {
 }
 
 type UserLoginFormatter struct {
-	ID      int    `gorm:"primaryKey" json:"id"`
-	FName   string `json:"f_name"`
-	Email   string `json:"email"`
-	Address string `json:"address"`
-	// Authorization string `json:"authorization"`
+	ID            int    `gorm:"primaryKey" json:"id"`
+	FName         string `json:"f_name"`
+	Email         string `json:"email"`
+	Address       string `json:"address"`
+	Authorization string `json:"authorization"`
 }
 
 func UserFormat(user User) UserFormatter {
@@ -24,12 +24,12 @@ func UserFormat(user User) UserFormatter {
 	}
 }
 
-func UserLoginFormat(user User) UserLoginFormatter {
+func UserLoginFormat(user User, token string) UserLoginFormatter {
 	return UserLoginFormatter{
-		ID:      user.ID,
-		FName:   user.FName,
-		Email:   user.Email,
-		Address: user.Address,
-		// Authorization: token,
+		ID:            user.ID,
+		FName:         user.FName,
+		Email:         user.Email,
+		Address:       user.Address,
+		Authorization: token,
 	}
 }

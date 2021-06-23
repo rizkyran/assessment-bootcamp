@@ -1,6 +1,7 @@
 package user
 
 import (
+	"assessmentRandhikaR/auth"
 	"errors"
 	"time"
 
@@ -8,38 +9,38 @@ import (
 )
 
 type Service interface {
-	// GetAllUser() ([]UserFormatter, error)
-	// GetUserByID(userID string) (UserFormatter, error)
+	GetAllUser() ([]UserFormatter, error)
+	GetUserByID(userID string) (UserFormatter, error)
 	UserRegister(input UserRegister) (UserFormatter, error)
 	UserLogin(input UserLogin) (UserLoginFormatter, error)
 }
 
 type service struct {
-	repository Repository
-	// authService auth.Service
+	repository  Repository
+	authService auth.Service
 }
 
-func NewUserService(repository Repository) *service {
-	return &service{repository}
+func NewUserService(repository Repository, authService auth.Service) *service {
+	return &service{repository, authService}
 }
 
-// func (s *service) GetAllUser() ([]UserFormatter, error) {
-// 	users, ex := s.repository.GetAllUser()
+func (s *service) GetAllUser() ([]UserFormatter, error) {
+	users, ex := s.repository.GetAllUser()
 
-// 	var formatUsers []UserFormatter
+	var formatUsers []UserFormatter
 
-// 	for _, user := range users {
-// 		formatUser := UserFormat(user)
-// 		formatUsers = append(formatUsers, formatUser)
-// 	}
+	for _, user := range users {
+		formatUser := UserFormat(user)
+		formatUsers = append(formatUsers, formatUser)
+	}
 
-// 	if ex != nil {
-// 		return formatUsers, ex
+	if ex != nil {
+		return formatUsers, ex
 
-// 	}
+	}
 
-// 	return formatUsers, nil
-// }
+	return formatUsers, nil
+}
 
 func (s *service) UserRegister(input UserRegister) (UserFormatter, error) {
 
@@ -81,10 +82,22 @@ func (s *service) UserLogin(input UserLogin) (UserLoginFormatter, error) {
 		return UserLoginFormatter{}, errors.New("user email / password invalid")
 	}
 
-	// token, _ := s.authService.GenerateToken(checkUser.ID)
+	token, _ := s.authService.GenerateToken(checkUser.ID)
 
-	formatter := UserLoginFormat(checkUser)
+	formatter := UserLoginFormat(checkUser, token)
 
 	return formatter, nil
 
+}
+
+func (s *service) GetUserByID(userID string) (UserFormatter, error) {
+	user, err := s.repository.GetUserByID(userID)
+
+	if err != nil {
+		return UserFormatter{}, err
+	}
+
+	formatter := UserFormat(user)
+
+	return formatter, nil
 }

@@ -1,42 +1,45 @@
 package handler
 
 import (
+	"assessmentRandhikaR/auth"
 	"assessmentRandhikaR/user"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 type userHandler struct {
 	service user.Service
+	auth    auth.Service
 }
 
-func NewUserHandler(service user.Service) *userHandler {
-	return &userHandler{service}
+func NewUserHandler(service user.Service, auth auth.Service) *userHandler {
+	return &userHandler{service, auth}
 }
 
-// func (h *userHandler) GetAllUser(c *gin.Context) {
-// 	users, err := h.service.GetAllUser()
+func (h *userHandler) GetAllUser(c *gin.Context) {
+	users, err := h.service.GetAllUser()
 
-// 	if err != nil {
-// 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-// 		return
-// 	}
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
 
-// 	c.JSON(http.StatusOK, users)
-// }
+	c.JSON(http.StatusOK, users)
+}
 
-// func (h *userHandler) GetUserByID(c *gin.Context) {
-// 	paramID := c.Params.ByName("user_id")
+func (h *userHandler) GetUserByID(c *gin.Context) {
+	paramID := c.Params.ByName("user_id")
 
-// 	user, err := h.service.GetUserByID(paramID)
+	user, err := h.service.GetUserByID(paramID)
 
-// 	if err != nil {
-// 		c.JSON(500, gin.H{"error": err.Error()})
-// 		return
-// 	}
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
 
-// 	c.JSON(http.StatusOK, user)
-// }
+	c.JSON(http.StatusOK, user)
+}
 
 func (h *userHandler) RegisterUser(c *gin.Context) {
 	var input user.UserRegister

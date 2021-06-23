@@ -1,8 +1,10 @@
 package main
 
 import (
+	"assessmentRandhikaR/auth"
 	"assessmentRandhikaR/config"
 	"assessmentRandhikaR/handler"
+	"assessmentRandhikaR/site"
 	"assessmentRandhikaR/user"
 
 	"github.com/gin-gonic/gin"
@@ -10,23 +12,28 @@ import (
 )
 
 var (
-	DB             *gorm.DB = config.Config()
-	userRepository          = user.NewRepo(DB)
-	userService             = user.NewUserService(userRepository)
-	userHandler             = handler.NewUserHandler(userService)
+	DB          *gorm.DB = config.Config()
+	authService          = auth.NewAuthService()
+	// middleware              = handler.Middleware(userService, authService)
+	userRepository = user.NewRepo(DB)
+	userService    = user.NewUserService(userRepository, authService)
+	userHandler    = handler.NewUserHandler(userService, authService)
+	siteRepository = site.NewRepo(DB)
+	siteService    = site.NewSiteService(siteRepository)
+	siteHandler    = handler.NewSiteHandler(siteService)
 )
 
 func main() {
 	r := gin.Default()
 
-	r.POST("/user/register", userHandler.RegisterUser)
-	r.POST("/user/login", userHandler.LoginUser)
+	r.POST("/user/register", userHandler.RegisterUser) // user register
+	r.POST("/user/login", userHandler.LoginUser)       // user login
 
-	r.GET("/user/pass")
-	r.GET("/user/pass/:pass_id")
-	r.POST("/user/pass")
-	r.PUT("/user/pass/:pass_id")
-	r.DELETE("/user/pass/:pass_id")
+	r.GET("/user/site")
+	r.GET("/user/site/:pass_id")
+	r.POST("/user/site/add", siteHandler.AddSite) // add site
+	r.PUT("/user/site/:pass_id")
+	r.DELETE("/user/site/:pass_id")
 
 	r.Run(":8888") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
