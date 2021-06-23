@@ -29,11 +29,10 @@ func main() {
 	r.POST("/user/register", userHandler.RegisterUser) // user register
 	r.POST("/user/login", userHandler.LoginUser)       // user login
 
-	r.GET("/user/site")
-	r.GET("/user/site/:pass_id")
+	r.GET("/user/site", middleware, siteHandler.GetSiteByID)
 	r.POST("/user/site/add", middleware, siteHandler.AddSite) // add site
-	r.PUT("/user/site/:pass_id")
-	r.DELETE("/user/site/:pass_id")
+	r.PUT("/user/site/:id", middleware, siteHandler.AlterSiteData)
+	r.DELETE("/user/site/:id", middleware, siteHandler.DeleteSiteData)
 
 	r.Run(":8888") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

@@ -15,3 +15,8 @@ type SiteInput struct {
 	SitePass string `json:"site_pass"`
 	// UserID   int    `json:"user_id"`
 }
+
+type SiteAlter struct {
+	Webite   string `json:"webite"`
+	SitePass string `json:"site_pass"`
+}
