@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Navbar from '../components/navbar'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
+import { register } from "../store/action/user"
 
 const Register = () => {
     const history = useHistory()
@@ -29,7 +30,7 @@ const Register = () => {
         console.log(data)
 
 
-        if (!error) {
+        if (!ex) {
             dispatch(register(data))
             history.push("/login")
         }
