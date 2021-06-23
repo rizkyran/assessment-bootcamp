@@ -5,7 +5,7 @@ import (
 )
 
 type Service interface {
-	AddSite(input SiteInput) (Site, error)
+	AddSite(input SiteInput, userid int) (Site, error)
 }
 
 type service struct {
@@ -27,11 +27,12 @@ func (s *service) GetAllSite() ([]Site, error) {
 	return sites, nil
 }
 
-func (s *service) AddSite(input SiteInput) (Site, error) {
+func (s *service) AddSite(input SiteInput, userid int) (Site, error) {
 
 	var newUser = Site{
 		Webite:    input.Webite,
 		SitePass:  input.SitePass,
+		UserID:    userid,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}

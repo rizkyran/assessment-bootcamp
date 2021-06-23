@@ -12,15 +12,15 @@ import (
 )
 
 var (
-	DB          *gorm.DB = config.Config()
-	authService          = auth.NewAuthService()
-	// middleware              = handler.Middleware(userService, authService)
-	userRepository = user.NewRepo(DB)
-	userService    = user.NewUserService(userRepository, authService)
-	userHandler    = handler.NewUserHandler(userService, authService)
-	siteRepository = site.NewRepo(DB)
-	siteService    = site.NewSiteService(siteRepository)
-	siteHandler    = handler.NewSiteHandler(siteService)
+	DB             *gorm.DB = config.Config()
+	authService             = auth.NewAuthService()
+	userRepository          = user.NewRepo(DB)
+	userService             = user.NewUserService(userRepository, authService)
+	userHandler             = handler.NewUserHandler(userService, authService)
+	siteRepository          = site.NewRepo(DB)
+	siteService             = site.NewSiteService(siteRepository)
+	siteHandler             = handler.NewSiteHandler(siteService)
+	middleware              = handler.Middleware(userService, authService)
 )
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 
 	r.GET("/user/site")
 	r.GET("/user/site/:pass_id")
-	r.POST("/user/site/add", siteHandler.AddSite) // add site
+	r.POST("/user/site/add", middleware, siteHandler.AddSite) // add site
 	r.PUT("/user/site/:pass_id")
 	r.DELETE("/user/site/:pass_id")
 

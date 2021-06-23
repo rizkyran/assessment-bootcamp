@@ -3,12 +3,12 @@ package migration
 import "time"
 
 type User struct {
-	ID                   int `gorm: "primaryKey"`
+	ID                   int `gorm:"primaryKey"`
 	FName                string
 	Address              string
 	Email                string
 	Password             string
-	SitePassword         []Site `gorm "foreignKey:UserID"`
+	SitePassword         []Site `gorm:"foreignKey:UserID"`
 	CreatedAt, UpdatedAt time.Time
 }
 

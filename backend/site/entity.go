@@ -13,5 +13,5 @@ type Site struct {
 type SiteInput struct {
 	Webite   string `json:"webite"`
 	SitePass string `json:"site_pass"`
-	UserID   int    `json:"user_id"`
+	// UserID   int    `json:"user_id"`
 }

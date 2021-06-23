@@ -1,0 +1,56 @@
+* {
+	font-family: 'Noto Sans', sans-serif !important;
+}
+
+body {
+	background-color: #DAFBFB !important;
+	color: #562C2C;
+}
+
+h1, h2, h3, h4, h5, h6, .title {
+	font-family: 'Chakra Petch', sans-serif !important;
+	font-weight: 700 !important;
+}
+
+.container-fluid {
+	padding: 0 !important;	
+}
+
+.fluid-page {
+	height: 100vh;
+	width: 100vw;
+
+	display: flex;
+	align-items: center;
+}
+
+button.primary {
+	border: none;
+	padding: 1.5vh 1vw;
+	background-color: #0E9594;
+	border-radius: 10px;
+	font-weight: 700 !important;
+	color: #F9EFDC !important;
+	
+	transition: all .1s ease-in-out;
+}
+
+button.primary:hover {
+	background-color: #127475;
+}
+button.long {
+	width: 100% !important;
+}
+
+/* LANDING */
+
+.landing-container {
+	
+}
+
+/* AUTH */
+
+.form-container {
+	padding: 2vw;
+	border: 2px solid #562C2C;
+}
