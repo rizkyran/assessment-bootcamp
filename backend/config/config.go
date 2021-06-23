@@ -1,7 +1,7 @@
 package config
 
 import (
-	"assessmentRandhika/migration"
+	"assessmentRandhikaR/migration"
 	"fmt"
 	"log"
 	"os"
@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	err    = godotenv.Load()
+	ex     = godotenv.Load()
 	dbUser = os.Getenv("DB_USER")
 	dbPass = os.Getenv("DB_PASS")
 	dbHost = os.Getenv("DB_HOST")
@@ -21,13 +21,13 @@ var (
 
 func Config() *gorm.DB {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", dbUser, dbPass, dbHost, dbName)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, ex := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
-	if err != nil {
-		log.Fatal(err)
+	if ex != nil {
+		log.Fatal(ex)
 	}
 
-	db.AutoMigrate(&migration.User{})
+	ex = db.AutoMigrate(&migration.User{}, &migration.Site{})
 
 	return db
 }
