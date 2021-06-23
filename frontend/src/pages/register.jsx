@@ -18,7 +18,7 @@ const Register = () => {
 
     const { ex } = useSelector(state => state.user)
     
-    const registerSubmit = (e) => {
+    const register = (e) => {
         e.preventDefault()
         const data = {
             f_name: name,
