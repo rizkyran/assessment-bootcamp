@@ -39,9 +39,9 @@ export const login = (payload, history) => {
             console.log("data",response.data.authorization)
             console.log(payload)
 
-            history.push("/pass")
+            history.push("/site")
 
-            // return dispatch({ type : "USER_LOGIN", payload : data})
+            return dispatch({ type : "USER_LOGIN", payload : response.data})
 
 
         } catch(err) {

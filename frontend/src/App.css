@@ -12,6 +12,17 @@ h1, h2, h3, h4, h5, h6, .title {
 	font-weight: 700 !important;
 }
 
+a {
+	text-decoration: none !important;
+	transition: all .1s ease-in-out;
+
+	cursor: pointer;
+}
+
+a:hover {
+	color: #F2542D !important;
+}
+
 .navbar-container {
 	background-color: white !important;
 }
@@ -54,14 +65,14 @@ label {
 	border: 2px solid #562C2C;
 }
 
-a {
+.link {
 	text-decoration: none;
 	color: #562C2C !important;
 
 	transition: all .2s ease-in-out;
 }
 
-a:hover {
+.link:hover {
 	color: #F2542D !important;
 }
 
@@ -75,6 +86,6 @@ a:hover {
 
 .form-container {
 	padding: 2vw;
-	border: 2px solid #562C2C;
+	/* border: 2px solid #562C2C; */
 	border-radius: 10px;
 }

@@ -1,6 +1,8 @@
 import React from "react"
 import './App.css'
 
+import Landing from "./pages/landing";
+
 import RegisterPage from "./pages/register"
 import LoginPage from "./pages/login";
 import TablePass from "./pages/pass";
@@ -12,6 +14,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom"; 
+import PrivateRoute from "./component/privateroute";
 
 function App() {
   return (
@@ -23,7 +26,12 @@ function App() {
         <Route path="/login">
           <LoginPage/>
         </Route>
-        <Route path="/site">
+
+        <PrivateRoute path="/site" component={TablePass} />
+        <PrivateRoute path="/add-site" component={CreatePass} />
+        <PrivateRoute path="/edit-site/:pass_id" component={UpdatePass} />
+
+        {/* <Route path="/site">
           <TablePass/>
         </Route>
         <Route path="/add-site">
@@ -31,6 +39,10 @@ function App() {
         </Route>
         <Route path="/edit-site/:pass_id">
           <UpdatePass/>
+        </Route> */}
+
+        <Route path="/">
+          <Landing />
         </Route>
       </Switch>
     </Router>

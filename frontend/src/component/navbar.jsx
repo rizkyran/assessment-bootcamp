@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../store/action/userAction";
 import { useHistory, useLocation } from "react-router-dom";
-import {Navbar, Nav} from "react-bootstrap"
+// import {Navbar, Nav} from "react-bootstrap"
 
 const Header = () => {
   const [pageURL, setPageURL] = useState("");
@@ -22,43 +22,41 @@ const Header = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-        <div className="container">
-
-        <Navbar.Brand href="/" className="ml-5">
-          Password Manager
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse
-          id="responsive-navbar-nav"
-          className="justify-content-end"
-        >
-          <Nav>
-            {authUser && (
-              <>
-                <Nav.Link className="mr-5" onClick={handleLogout}>
-                  Logout
-                </Nav.Link>
-              </>
-            )}
-            {!authUser && (
-              <>
-                {pageURL === "/register" || (
-                  <Nav.Link href="/register" className="mr-5">
-                    Register
-                  </Nav.Link>
+      <div className="container-fluid navbar-container">
+        <nav className="navbar navbar-expand-lg">
+          <div className="container">
+            <a className="navbar-brand title link" href="/">Password Manager</a>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav ms-auto">
+                {authUser && (
+                  <>
+                    <a className="mr-5" onClick={handleLogout}>
+                      Logout
+                    </a>
+                  </>
                 )}
-                {pageURL === "/login" || (
-                  <Nav.Link href="/login" className="mr-5">
-                    Login
-                  </Nav.Link>
+                {!authUser && (
+                  <>
+                    {pageURL === "/register" || (
+                      <a href="/register" className="mr-5">
+                        Register
+                      </a>
+                    )}
+                    {pageURL === "/login" || (
+                      <a href="/login" className="mr-5">
+                        Login
+                      </a>
+                    )}
+                  </>
                 )}
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-        </div>
-      </Navbar>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
     </>
   );
 };
