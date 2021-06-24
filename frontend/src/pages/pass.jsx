@@ -5,6 +5,7 @@ import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { logoutUser } from "../store/action/userAction"
 
+import Swal from "sweetalert2"
 
 function TablePass() {
     const history = useHistory()
@@ -18,8 +19,6 @@ function TablePass() {
         dispatch(fetchPass())
     },[])
 
- 
-
     // console.log(isLoading)
     console.log(passw.data)
 
@@ -31,13 +30,24 @@ function TablePass() {
         history.push("/add-site")
     }
 
-    // const gotoLogin = () =>{
-    //     history.push("/login")
-    // }
-
-    // const gotoUpdate = () =>{
-    //     history.push("/updatePass/:pass_id")
-    // }
+    const confirmDelete = (id) => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#B82848",
+                cancelButtonColor: "#0E9594",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deletePass(id, history))
+                    dispatch(fetchPass())
+                    Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                    window.location.reload()
+                }
+            })
+        }
 
         return(
             <>
@@ -78,9 +88,8 @@ function TablePass() {
                                                     }}></button>
                                                     <button class="b-danger btn-trash" onClick={(e) => {
                                                         e.preventDefault()
-                                                        dispatch(deletePass(pass.ID, history))
-                                                        dispatch(fetchPass())
-                                                    }}></button>
+                                                        confirmDelete(pass.ID)
+                                                        }}></button>
                                                 </td>
                                             </tr>
                                         )
@@ -92,8 +101,7 @@ function TablePass() {
                 </div>
             </>
         )
-    // }
-}
+    }
 
 
 export default TablePass

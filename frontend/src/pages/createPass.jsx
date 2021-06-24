@@ -30,6 +30,7 @@ function CreatePass() {
             dispatch(createPass(data))
             dispatch(fetchPass)
             history.push("/site")
+            window.location.reload()
         }
 
     }

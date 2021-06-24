@@ -46,6 +46,7 @@ function UpdatePass() {
     const back = () => {
         dispatch(fetchPass())
         history.push("/site")
+        window.location.reload()
     }
 
 
