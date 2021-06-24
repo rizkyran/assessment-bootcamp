@@ -50,31 +50,41 @@ function UpdatePass() {
 
 
     return (
-        <div>
-            <Navbar/>
-            <div className="container">    
-            <form style={{textAlign:"center", paddingTop:"150px", paddingBottom:"150px"}} onSubmit={submitUpdatePass}>
-            <h2>Create New Password</h2>
-                <div className="mb-3">
-                    <label for="title" className="form-label">Title</label>
-                    <input type="text" className="form-control" id="title" onChange={e => {
-                        e.preventDefault()
-                        setWebsite(e.target.value)
-                    }}/>
+        <>
+            <Navbar />
+            <div className="container-fluid fluid-page auth-container">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-sm-5 form-container">
+                            <h1 className="title text-center">
+                                Change Data Site
+                            </h1>
+                            <br />
+                            <div className="row">
+                                <form onSubmit={submitUpdatePass}>
+                                    <div className="mb-3">
+                                        <label for="website" className="form-label">Website</label>
+                                        <input type="text" className="form-control" id="website" onChange={e => {
+                                            e.preventDefault()
+                                            setWebsite(e.target.value)
+                                        }} />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" className="form-label">Password</label>
+                                        <input type="text" className="form-control" id="password" onChange={e => {
+                                            e.preventDefault()
+                                            setPass(e.target.value)
+                                        }} />
+                                    </div>
+                                    <button type="submit" className="primary long mb-2">Add</button>
+                                    <button type="submit" className="b-danger long" onClick={back}>Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label for="auhtor" className="form-label">Auhtor</label>
-                    <input type="text" className="form-control" id="auhtor" onChange={e => {
-                        e.preventDefault()
-                        setPass(e.target.value)
-                    }}/>
-                </div>
-                <button type="submit" className="btn btn-danger" style={{ margin : "0px 100px"}} onClick={back}>Back</button>
-                <button type="submit" className="btn btn-primary" style={{ margin : "0px 100px"}}>Create</button>
-            </form>
-            </div> 
-            {/* <Footer/> */}
-        </div>
+            </div>
+        </>
     )
 }
 
