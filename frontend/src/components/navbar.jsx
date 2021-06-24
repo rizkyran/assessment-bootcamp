@@ -11,6 +11,7 @@ const Navbar = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const history = useHistory();
+    
     useEffect(() => {
         setPageURL(location.pathname);
     }, []);
@@ -30,19 +31,27 @@ const Navbar = () => {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
-                                {authUser && (
-                                    <>
+                            {authUser && (
+                                <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" onClick={handleLogout}>Logout</Link>
+                                    </li>
+                                </>
+                            )}
+                            {!authUser && (
+                                <>
+                                    {pageURL === "user/register" || (
                                         <li className="nav-item">
-                                            <Link className="nav-link" onClick={handleLogout}>Logout</Link>
+                                            <Link className="nav-link" href="user/register">Login</Link>
                                         </li>
-                                    </>
-                                )}
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Login</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Register</a>
-                            </li>
+                                    )}
+                                    {pageURL === "user/login" || (
+                                        <li className="nav-item">
+                                            <Link className="nav-link" href="user/login">Login</Link>
+                                        </li>
+                                    )}
+                                </>
+                            )}
                         </ul>
                         </div>
                     </div>

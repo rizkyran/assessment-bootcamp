@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom';
+
 import Navbar from '../components/navbar'
 
 const Landing = () => {
@@ -13,9 +15,11 @@ const Landing = () => {
                             WELCOME TO PASSWORD MANAGER!
                         </h1>
                         <br />
-                        <button className="primary">
-                            Start Managing
-                        </button>
+                        <Link to="/user/login">
+                            <button className="primary">
+                                Start Managing
+                            </button>
+                        </Link>
                     </div>
                     <div className="col-sm"></div>
                 </div>

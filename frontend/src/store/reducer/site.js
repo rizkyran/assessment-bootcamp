@@ -1,22 +1,22 @@
 const initState = {
-    passw : [],
-    pass : null,
+    sites : [],
+    site : null,
     isLoading : false,
     error : null
 }
 
 const passReducer = (state = initState, action) => {
     switch(action.type) {
-        case "GET_SITE":
+        case "SITE_LOADING":
             return { ...state, isLoading : true}
-        case "FETCH_PASS":
-            return { ...state, isLoading: false, passw : action.payload}
+        case "GET_SITE":
+            return { ...state, isLoading: false, sites : action.payload}
         case "ADD_SITE":
-            return { ...state, isLoading:false, pass : action.payload}
+            return { ...state, isLoading:false, site : action.payload}
         case "ALTER_SITE":
-            return { ...state, isLoading:false, pass : action.payload}
+            return { ...state, isLoading:false, site : action.payload}
         case "DELETE_SITE":
-            return { ...state, isLoading:false, pass : null}
+            return { ...state, isLoading:false, site : null}
         case "ERROR_SITE":
             return { ...state, isLoading: false}
         default:

@@ -48,7 +48,7 @@ const Register = () => {
                             </h1>
                             <br />
                             <div className="row">
-                                <form>
+                                <form onSubmit={register}>
                                     <div className="mb-3">
                                         <label for="name" className="form-label">Full Name</label>
                                         <input type="text" className="form-control" id="name" onChange={e => {

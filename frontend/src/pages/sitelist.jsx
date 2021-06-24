@@ -1,0 +1,89 @@
+import { deletePass, getPass } from "../store/action/site"
+import Navbar from "../components/navbar"
+import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect } from "react"
+import { useHistory } from "react-router-dom"
+import { logout } from "../store/action/user"
+
+
+function SiteList() {
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const { sites, isLoading } = useSelector(state => state.site)
+
+
+    useEffect(() => {
+        dispatch(getPass())
+    }, [])
+
+
+
+    // console.log(isLoading)
+    console.log(sites.data)
+
+    // if (isLoading){
+    //     return (<h1>Loading</h1>) 
+    // } else {
+
+    const gotoCreate = () => {
+        history.push("/user/site/add")
+    }
+
+    // const gotoLogin = () =>{
+    //     history.push("/login")
+    // }
+
+    // const gotoUpdate = () =>{
+    //     history.push("/updatePass/:pass_id")
+    // }
+
+    return (
+        <div>
+            <Navbar />
+            <div style={{ padding: "10%" }}>
+                <button class="btn btn-primary" onClick={gotoCreate}>Create New Website</button>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th scope="col">Website</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {sites.data && sites.data.map((site, index) => {
+                            return (
+                                <tr>
+                                    <td>{index + 1}</td>
+                                    <td>{site.Webite}</td>
+                                    <td>{site.Password}</td>
+                                    <td>
+                                        <button class="btn btn-warning" onClick={(e) => {
+                                            e.preventDefault()
+                                            history.push("/updatePass/" + site.ID)
+                                        }}>Update</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" onClick={(e) => {
+                                            e.preventDefault()
+                                            dispatch(deletePass(site.ID, history))
+                                            dispatch(getPass())
+                                        }}>Delete</button>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            {/* <Footer/> */}
+        </div>
+    )
+    // }
+}
+
+
+export default SiteList

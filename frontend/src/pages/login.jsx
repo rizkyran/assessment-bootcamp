@@ -19,7 +19,7 @@ const Login = () => {
     useEffect(() => {
     }, [])
 
-    const login = () => {
+    const loginData = () => {
         const data = {
             email: email,
             password: password,
@@ -44,7 +44,7 @@ const Login = () => {
                             </h1>
                             <br />
                             <div className="row">
-                                <form>
+                                <form onSubmit={loginData}>
                                     <div className="mb-3">
                                         <label for="email" className="form-label">Email</label>
                                         <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={e => {
