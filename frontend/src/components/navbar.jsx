@@ -11,7 +11,6 @@ const Navbar = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const history = useHistory();
-    
     useEffect(() => {
         setPageURL(location.pathname);
     }, []);
@@ -27,32 +26,32 @@ const Navbar = () => {
                     <div className="container">
                         <Link className="navbar-brand title link" to="/">Password Manager</Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                            <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav ms-auto">
-                            {authUser && (
-                                <>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" onClick={handleLogout}>Logout</Link>
-                                    </li>
-                                </>
-                            )}
-                            {!authUser && (
-                                <>
-                                    {pageURL === "user/register" || (
+                            <ul className="navbar-nav ms-auto">
+                                {authUser && (
+                                    <>
                                         <li className="nav-item">
-                                            <Link className="nav-link" href="user/register">Login</Link>
+                                            <Link className="nav-link" onClick={handleLogout}>Logout</Link>
                                         </li>
-                                    )}
-                                    {pageURL === "user/login" || (
-                                        <li className="nav-item">
-                                            <Link className="nav-link" href="user/login">Login</Link>
-                                        </li>
-                                    )}
-                                </>
-                            )}
-                        </ul>
+                                    </>
+                                )}
+                                {!authUser && (
+                                    <>
+                                        {pageURL === "/user/register" || (
+                                            <li className="nav-item">
+                                                <a className="nav-link" href="/user/register">Register</a>
+                                            </li>
+                                        )}
+                                        {pageURL === "/user/login" || (
+                                            <li className="nav-item">
+                                                <a className="nav-link" href="/user/login">Login</a>
+                                            </li>
+                                        )}
+                                    </>
+                                )}
+                            </ul>
                         </div>
                     </div>
                 </nav> 

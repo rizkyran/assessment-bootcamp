@@ -17,29 +17,12 @@ function SiteList() {
         dispatch(getPass())
     }, [])
 
-
-
-    // console.log(isLoading)
-    console.log(sites.data)
-
-    // if (isLoading){
-    //     return (<h1>Loading</h1>) 
-    // } else {
-
     const gotoCreate = () => {
         history.push("/user/site/add")
     }
 
-    // const gotoLogin = () =>{
-    //     history.push("/login")
-    // }
-
-    // const gotoUpdate = () =>{
-    //     history.push("/updatePass/:pass_id")
-    // }
-
     return (
-        <div>
+        <div class="container-fluid fluid-page password-container">
             <Navbar />
             <div style={{ padding: "10%" }}>
                 <button class="btn btn-primary" onClick={gotoCreate}>Create New Website</button>

@@ -10,31 +10,28 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    // <Router>
-    //   <Switch>
-    //     <Route path="/">
-    //       <Landing/>
-    //     </Route>
-    //     <Route path="/user/register">
-    //       <Register/>
-    //     </Route>
-    //     <Route path="/user/login">
-    //       <Login/>
-    //     </Route>
-    //     <Route path="/user/site">
-    //       <SiteList />
-    //     </Route>
-    //     <Route path="/user/site/add">
-    //       {/* <CreatePass/> */}
-    //     </Route>
-    //     <Route path="/user/site/:id">
-    //       {/* <UpdatePass/> */}
-    //     </Route>
-    //   </Switch>
-    // </Router>
-    <>
-      <Login />
-    </>
+    <Router>
+      <Switch>
+        <Route path="/">
+          <Landing/>
+        </Route>
+        <Route path="/user/register">
+          <Register/>
+        </Route>
+        <Route path="/user/login">
+          <Login/>
+        </Route>
+        <Route path="/user/site">
+          <SiteList />
+        </Route>
+        <Route path="/user/site/add">
+          {/* <CreatePass/> */}
+        </Route>
+        <Route path="/user/site/:id">
+          {/* <UpdatePass/> */}
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
