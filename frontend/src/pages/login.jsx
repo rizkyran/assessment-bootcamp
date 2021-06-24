@@ -30,6 +30,7 @@ function LoginPage() {
         if (!error) {
             dispatch(fetchPass(data))
             history.push("/site")
+            window.location.reload()
         }
         console.log(data)
     }

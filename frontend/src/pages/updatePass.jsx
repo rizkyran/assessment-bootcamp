@@ -40,6 +40,7 @@ function UpdatePass() {
             dispatch(updatePass(passId,data))
             dispatch(fetchPass())
             history.push("/site")
+            window.location.reload()
         }
 
     }

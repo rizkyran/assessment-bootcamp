@@ -35,6 +35,7 @@ function RegisterPage() {
             history.push("/login")
         }
         dispatch(register(data))
+        window.location.reload()
     }
 
     return(
