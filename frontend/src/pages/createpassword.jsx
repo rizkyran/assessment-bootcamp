@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Navbar from "../component/navbar"
+import Navbar from "../components/navbar"
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 
 import { useHistory } from "react-router-dom"
-import { addSite, getPass } from "../store/action/pass"
+import { addSite, getPass } from "../store/action/site"
 
 function CreatePassword() {
     const history = useHistory()
@@ -29,7 +29,7 @@ function CreatePassword() {
         if (!error) {
             dispatch(addSite(data))
             dispatch(getPass)
-            history.push("/user/site")
+            history.push("/site")
         }
 
     }

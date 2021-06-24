@@ -18,7 +18,7 @@ const Register = () => {
 
     const { ex } = useSelector(state => state.user)
     
-    const register = (e) => {
+    const registerData = (e) => {
         e.preventDefault()
         const data = {
             f_name: name,
@@ -26,8 +26,6 @@ const Register = () => {
             email: email,
             password: pass,
         }
-
-        console.log(data)
 
 
         if (!ex) {
@@ -48,7 +46,7 @@ const Register = () => {
                             </h1>
                             <br />
                             <div className="row">
-                                <form onSubmit={register}>
+                                <form onSubmit={registerData}>
                                     <div className="mb-3">
                                         <label for="name" className="form-label">Full Name</label>
                                         <input type="text" className="form-control" id="name" onChange={e => {
@@ -82,7 +80,7 @@ const Register = () => {
                                 <p className="small text-center">
                                     Already have an account?&nbsp;
                                     <b className="form-helper-text">
-                                        <a href="">
+                                        <a href="/login">
                                             Sign In
                                         </a>
                                     </b>

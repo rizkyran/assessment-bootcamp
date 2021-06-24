@@ -18,7 +18,7 @@ function SiteList() {
     }, [])
 
     const gotoCreate = () => {
-        history.push("/user/site/add")
+        history.push("/site/create")
     }
 
     return (
@@ -46,7 +46,7 @@ function SiteList() {
                                     <td>
                                         <button class="btn btn-warning" onClick={(e) => {
                                             e.preventDefault()
-                                            history.push("/updatePass/" + site.ID)
+                                            history.push("/site/update/" + site.ID)
                                         }}>Update</button>
                                     </td>
                                     <td>

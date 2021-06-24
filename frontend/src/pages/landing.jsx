@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import Navbar from '../components/navbar'
 
@@ -15,11 +15,11 @@ const Landing = () => {
                             WELCOME TO PASSWORD MANAGER!
                         </h1>
                         <br />
-                        <Link to="/user/login">
+                        <a href="/login">
                             <button className="primary">
                                 Start Managing
                             </button>
-                        </Link>
+                        </a>
                     </div>
                     <div className="col-sm"></div>
                 </div>

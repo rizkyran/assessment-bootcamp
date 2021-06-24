@@ -3,8 +3,6 @@ import { useDispatch } from "react-redux";
 import { logout } from "../store/action/user";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { Link } from 'react-router-dom';
-
 const Navbar = () => {
     const [pageURL, setPageURL] = useState("");
     const authUser = !!localStorage.getItem("apitoken");
@@ -17,14 +15,14 @@ const Navbar = () => {
 
     const handleLogout = () => {
         dispatch(logout());
-        history.push("/user/login");
+        history.push("/login");
     };
     return (
         <>
             <div className="container-fluid navbar-container">
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
-                        <Link className="navbar-brand title link" to="/">Password Manager</Link>
+                        <a className="navbar-brand title link" href="/">Password Manager</a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -32,22 +30,16 @@ const Navbar = () => {
                             <ul className="navbar-nav ms-auto">
                                 {authUser && (
                                     <>
-                                        <li className="nav-item">
-                                            <Link className="nav-link" onClick={handleLogout}>Logout</Link>
-                                        </li>
+                                        <a className="nav-link" onClick={handleLogout}>Logout</a>
                                     </>
                                 )}
                                 {!authUser && (
                                     <>
-                                        {pageURL === "/user/register" || (
-                                            <li className="nav-item">
-                                                <a className="nav-link" href="/user/register">Register</a>
-                                            </li>
+                                        {pageURL === "/register" || (
+                                            <a className="nav-link" href="/register">Register</a>
                                         )}
-                                        {pageURL === "/user/login" || (
-                                            <li className="nav-item">
-                                                <a className="nav-link" href="/user/login">Login</a>
-                                            </li>
+                                        {pageURL === "/login" || (
+                                            <a className="nav-link" href="/login">Login</a>
                                         )}
                                     </>
                                 )}

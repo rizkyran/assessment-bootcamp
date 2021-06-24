@@ -4,6 +4,8 @@ import Landing from './pages/landing.jsx';
 import Login from './pages/login.jsx';
 import Register from './pages/register.jsx';
 import SiteList from './pages/sitelist';
+import CreatePassword from './pages/createpassword';
+import AlterSite from './pages/updatepassword';
 // import Navbar from './components/navbar';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -15,20 +17,20 @@ function App() {
         <Route path="/">
           <Landing/>
         </Route>
-        <Route path="/user/register">
+        <Route path="/register">
           <Register/>
         </Route>
-        <Route path="/user/login">
+        <Route path="/login">
           <Login/>
         </Route>
-        <Route path="/user/site">
+        <Route path="/site">
           <SiteList />
         </Route>
-        <Route path="/user/site/add">
-          {/* <CreatePass/> */}
+        <Route path="/site/create">
+          <CreatePassword/>
         </Route>
-        <Route path="/user/site/:id">
-          {/* <UpdatePass/> */}
+        <Route path="/site/update/:id">
+          <AlterSite/>
         </Route>
       </Switch>
     </Router>

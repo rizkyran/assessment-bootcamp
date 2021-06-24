@@ -9,7 +9,7 @@ export const getPass = (payload) => {
 
             const { data } = await api({
                 method : "GET",
-                url : "/user/site",
+                url : "/site",
                 headers : {
                     "authorization" : apiToken
                 }
@@ -32,7 +32,7 @@ export const addSite = (payload) => {
 
             const { data } = await api({
                 method : "POST",
-                url : "/user/site",
+                url : "/site",
                 data : payload,
                 headers : {
                     "authorization" : apiToken
@@ -54,7 +54,7 @@ export const alterPass = (id, payload) => {
 
             const { data } = await api({
                 method : "PUT",
-                url : `/user/site/${id}`,
+                url : `/site/${id}`,
                 data : payload,
                 headers : {
                     "authorization" : apiToken
@@ -77,12 +77,12 @@ export const deletePass = (id, history) => {
 
             const { data } =  await api({
                 method : "DELETE",
-                url : `/user/site/${id}`,
+                url : `/site/${id}`,
                 headers : {
                     "authorization" : apiToken
                 }
             })
-            history.push("/user/site")
+            history.push("/site")
 
             console.log(data)
 

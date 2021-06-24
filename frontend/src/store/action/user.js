@@ -7,7 +7,7 @@ export const register = (payload) => {
 
             const { data } = await api({
                 method : "POST",
-                url : "/user/register",
+                url : "/register",
                 data : payload
             })
 
@@ -27,13 +27,13 @@ export const login = (payload, history) => {
 
             const {data} = await api ({
                 method : "POST",
-                url : "/user/login",
+                url : "/login",
                 data: payload
             })
 
             localStorage.setItem("apitoken", data.data.authorization)
 
-            history.push("/user/site")
+            history.push("/site")
 
             return dispatch({ type : "USER_LOGIN", payload : data})
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Navbar from "../component/navbar"
+import Navbar from "../components/navbar"
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 
@@ -34,7 +34,7 @@ function AlterSite() {
         if (!error) {
             dispatch(alterPass(siteID, data))
             dispatch(getPass())
-            history.push("/pass")
+            history.push("/site")
         }
 
     }
