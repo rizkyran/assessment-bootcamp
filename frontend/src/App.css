@@ -1,10 +1,10 @@
 * {
 	font-family: 'Noto Sans', sans-serif !important;
+	color: #562C2C !important;
 }
 
 body {
 	background-color: #DAFBFB !important;
-	color: #562C2C;
 }
 
 h1, h2, h3, h4, h5, h6, .title {

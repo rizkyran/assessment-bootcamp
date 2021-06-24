@@ -1,36 +1,36 @@
-// import logo from './logo.svg';
-import './App.css';
-import Landing from './pages/landing.jsx';
-import Login from './pages/login.jsx';
-import Register from './pages/register.jsx';
-import SiteList from './pages/sitelist';
-import CreatePassword from './pages/createpassword';
-import AlterSite from './pages/updatepassword';
-// import Navbar from './components/navbar';
+import React from "react"
+import './App.css'
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import RegisterPage from "./pages/register"
+import LoginPage from "./pages/login";
+import TablePass from "./pages/pass";
+import CreatePass from "./pages/createPass";
+import UpdatePass from "./pages/updatePass";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom"; 
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/">
-          <Landing/>
-        </Route>
         <Route path="/register">
-          <Register/>
+          <RegisterPage/>
         </Route>
         <Route path="/login">
-          <Login/>
+          <LoginPage/>
         </Route>
         <Route path="/site">
-          <SiteList />
+          <TablePass/>
         </Route>
-        <Route path="/site/create">
-          <CreatePassword/>
+        <Route path="/add-site">
+          <CreatePass/>
         </Route>
-        <Route path="/site/update/:id">
-          <AlterSite/>
+        <Route path="/edit-site/:pass_id">
+          <UpdatePass/>
         </Route>
       </Switch>
     </Router>

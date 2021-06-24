@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import siteReducer from './reducer/site'
-import user from './reducer/user';
+import passReducer from './reducer/passReducer'
+import user from './reducer/userReducer';
 
 
 const rootReducer = combineReducers({
     user : user,
-    site : siteReducer,
+    pass : passReducer,
 })
 
 export default rootReducer;

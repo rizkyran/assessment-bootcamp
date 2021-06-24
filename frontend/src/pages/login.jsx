@@ -1,81 +1,68 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react"
 
-import Navbar from '../components/navbar'
-
+import Navbar from "../component/navbar"
 import { useDispatch, useSelector } from "react-redux"
-import { login } from '../store/action/user'
-import { useHistory } from "react-router-dom"
-import { getPass } from "../store/action/site"
 
-const Login = () => {
+import { login } from '../store/action/userAction'
+import { useHistory } from "react-router-dom"
+import { fetchPass } from "../store/action/passAction"
+
+function LoginPage() {
+
     const history = useHistory()
 
     const dispatch = useDispatch()
     const [email, setEmail] = useState("")
-    const [password, setPass] = useState("")
+    const [pass, setPass] = useState("")
 
     const { user, error } = useSelector(state => state.user)
 
     useEffect(() => {
     }, [])
 
-    const loginData = () => {
+    const loginSubmit = () => {
         const data = {
-            email: email,
-            password: password,
+            email : email,
+            password :pass,
         }
         dispatch(login(data, history))
 
         if (!error) {
-            dispatch(getPass(data))
-            history.push("/user/site")
+            dispatch(fetchPass(data))
+            history.push("/site")
         }
         // console.log(error)
+        console.log(data)
     }
-    return (
-        <>
-            <Navbar />
-            <div className="container-fluid fluid-page auth-container">
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-sm-5 form-container">
-                            <h1 className="title text-center">
-                                Login Using Your Account
-                            </h1>
-                            <br />
-                            <div className="row">
-                                <form onSubmit={loginData}>
-                                    <div className="mb-3">
-                                        <label for="email" className="form-label">Email</label>
-                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={e => {
-                                            e.preventDefault()
-                                            setEmail(e.target.value)
-                                        }} />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label for="password" className="form-label">Password</label>
-                                        <input type="password" className="form-control" id="password" onChange={e => {
-                                            e.preventDefault()
-                                            setPass(e.target.value)
-                                        }} />
-                                    </div>
-                                    <button type="submit" className="primary long">Sign In</button>
-                                </form>
-                                <p className="small text-center">
-                                    Don't have any account?&nbsp;
-                                    <b className="form-helper-text">
-                                        <a href="">
-                                            Sign Up
-                                        </a>
-                                    </b>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+    return(
+        <div>
+        <Navbar/>
+        <div className="container">    
+            <form style={{textAlign:"center", paddingTop:"100px", paddingBottom:"30px"}} onSubmit={loginSubmit}>
+            <h2>Login User</h2>
+            <div className="mb-3">
+                <label for="email" className="form-label">Email address</label>
+                <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={e => {
+                    e.preventDefault()
+                    setEmail(e.target.value)
+                }}/>
+                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
             </div>
-        </>
+            <div class="mb-3">
+                <label for="password" className="form-label">Password</label>
+                <input type="password" className="form-control" id="password" onChange={e => {
+                    e.preventDefault()
+                    setPass(e.target.value)
+                }}/>
+            </div>
+            <button type="submit" className="btn btn-primary">Login</button>
+            </form>
+        </div>
+        {/* <Footer/> */}
+        </div>
     )
 }
 
-export default Login
+
+export default LoginPage
