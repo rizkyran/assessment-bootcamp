@@ -40,48 +40,57 @@ function TablePass() {
     // }
 
         return(
-            <div>
+            <>
                 <Navbar/>
-                <div style={{padding: "10%"}}>
-                    <button class="btn btn-primary" onClick={gotoCreate}>Create New Site</button>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                            <th>NO</th>
-                            <th scope="col">Website</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Update</th>
-                            <th scope="col">Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {passw && passw.map((pass, index) =>{
-                            return(
-                                <tr>
-                                <td>{index+1}</td>
-                                <td>{pass.webite}</td>
-                                <td>{pass.site_pass}</td>
-                                <td>
-                                <button class="btn btn-warning" onClick={(e)=>{
-                                    e.preventDefault()
-                                        history.push("/edit-site/" + pass.ID)
-                                }}>Update</button>
-                                </td>
-                                <td>
-                                <button class="btn btn-danger" onClick={(e)=>{
-                                    e.preventDefault()
-                                    dispatch(deletePass(pass.ID, history))
-                                    dispatch(fetchPass())
-                                }}>Delete</button>
-                                </td>
-                            </tr>
-                            )
-                        })}
-                        </tbody>
-                    </table>
+                <div className="container-fluid fluid-page site-table-container">
+                    <div className="container">
+                        <div className="row btn-container">
+                            <div className="col-sm-5">
+                                <h1 className="display-5 accent-title">
+                                    Your Saved Site Passwords
+                                </h1>
+                                <br />
+                                <button class="primary" onClick={gotoCreate}>Add New Site</button>
+                            </div>
+                        </div>
+                        <br />
+                        <div className="row table-container">
+                            <table class="table table-bordered align-middle site-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Website</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col" colspan="2">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {passw && passw.map((pass, index) => {
+                                        return (
+                                            <tr>
+                                                <td class="text-center">{index + 1}</td>
+                                                <td>{pass.webite}</td>
+                                                <td>{pass.site_pass}</td>
+                                                <td>
+                                                    <button class="b-info btn-edit me-2" onClick={(e) => {
+                                                        e.preventDefault()
+                                                        history.push("/edit-site/" + pass.ID)
+                                                    }}></button>
+                                                    <button class="b-danger btn-trash" onClick={(e) => {
+                                                        e.preventDefault()
+                                                        dispatch(deletePass(pass.ID, history))
+                                                        dispatch(fetchPass())
+                                                    }}></button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            {/* <Footer/> */}
-            </div>
+            </>
         )
     // }
 }
